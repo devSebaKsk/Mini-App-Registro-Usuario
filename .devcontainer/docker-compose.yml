@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspaces/${localWorkspaceFolderBasename}
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+   
+    depends_on:
+      db:
+        condition: service_started
+
+    # Variables de entorno Flask se conecte a la DB
+    environment:
+      POSTGRES_DB: flask_db
+      POSTGRES_USER: flask_user
+      POSTGRES_PASSWORD: supersecretpassword
+      DATABASE_URL: postgresql://flask_user:your_strong_password@db:5432/flask_db
+
+  # Servicio para PostgreSQL
+  db:
+    image: postgres:16 
+    restart: unless-stopped 
+    environment:
+      POSTGRES_DB: flask_db
+      POSTGRES_USER: flask_user
+      POSTGRES_PASSWORD: supersecretpassword
+    volumes:
+      - db_data:/var/lib/postgresql/data 
+    ports:
+      - "5432:5432" 
+
+volumes:
+  db_data: 

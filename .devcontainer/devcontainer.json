@@ -1,0 +1,22 @@
+{
+  "name": "Python 3 & PostgreSQL",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker" 
+      ]
+    }
+  },
+
+  // Flask (5000) y PostgreSQL (5432)
+  "forwardPorts": [5000, 5432],
+
+  
+  "postAttachCommand": "export FLASK_APP=backend.app && flask run --host=0.0.0.0 --port=5000"
+
+}
