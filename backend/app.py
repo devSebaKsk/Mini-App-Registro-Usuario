@@ -59,7 +59,7 @@ def create_user():
     date = datetime.now(timezone.utc)
 
     user = User(
-        full_name=data["fullname"],
+        fullname=data["fullname"],
         email=data["email"],
         password=pw_hash,
         created_at=date

@@ -11,12 +11,12 @@ export const Registro = () => {
 
     const handleSignup = async()=>{
 		const data = {
-            "name":name,
+            "fullname":name,
 			"email":email,
 			"password":password
 		};
 		try {
-			const response = await fetch (`https://expert-carnival-69gvv5j96wq6c4qq5-5000.app.github.dev/users`, {
+			const response = await fetch (`https://expert-carnival-69gvv5j96wq6c4qq5-5000.app.github.dev/createUser`, {
 				method:'POST',
 				headers:{
 					"Content-Type":"application/json"
