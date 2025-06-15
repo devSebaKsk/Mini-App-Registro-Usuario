@@ -13,7 +13,7 @@ export const Listado = () => {
       const data = await res.json();
       setListado(data);
     } catch (error) {
-      console.error("Error al cargar trabajos:", error);
+      console.error("Error al cargar usuarios:", error);
     }
   };
 
