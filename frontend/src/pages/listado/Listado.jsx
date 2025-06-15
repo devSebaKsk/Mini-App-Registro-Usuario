@@ -1,0 +1,47 @@
+import React from 'react'
+import { useState, useEffect } from 'react'
+
+export const Listado = () => {
+
+    const [listado, setListado] = useState([])
+
+    const getUsers = async () => {
+    try {
+
+      const res = await fetch(`https://fuzzy-goldfish-q7qvv4w7rpp724w4w-5000.app.github.dev/users`);
+
+      const data = await res.json();
+      setListado(data);
+    } catch (error) {
+      console.error("Error al cargar trabajos:", error);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  return (
+    <div className="listado-wrapper">
+        <h1>Listado de Usuarios</h1>
+        <table className="listado-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            {listado.map((user) => (
+                <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                </tr>
+            ))}
+            </tbody>
+        </table>
+    </div>
+  )
+}

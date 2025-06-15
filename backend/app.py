@@ -85,7 +85,7 @@ def get_users():
     for user in users:
         users_list.append({
             "id": user.id,
-            "full_name": user.full_name,
+            "fullname": user.fullname,
             "email": user.email,
 
         })

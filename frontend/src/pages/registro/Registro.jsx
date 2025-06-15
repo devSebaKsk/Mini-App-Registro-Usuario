@@ -16,7 +16,7 @@ export const Registro = () => {
 			"password":password
 		};
 		try {
-			const response = await fetch (`https://expert-carnival-69gvv5j96wq6c4qq5-5000.app.github.dev/createUser`, {
+			const response = await fetch (`https://fuzzy-goldfish-q7qvv4w7rpp724w4w-5000.app.github.dev/createUser`, {
 				method:'POST',
 				headers:{
 					"Content-Type":"application/json"
