@@ -4,6 +4,22 @@
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
+  "features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"version": "lts"
+		}
+	},
+
+  "onCreateCommand": "(pipenv install || echo \"pipenv install failed\");",
+
+  "postCreateCommand": "npm install",
+
+
   "customizations": {
     "vscode": {
       "extensions": [
@@ -14,7 +30,7 @@
   },
 
   // Flask (5000) y PostgreSQL (5432)
-  "forwardPorts": [5000, 5432],
+  "forwardPorts": [5000, 5432, 5173],
 
   
   "postAttachCommand": "export FLASK_APP=backend.app && flask run --host=0.0.0.0 --port=5000"

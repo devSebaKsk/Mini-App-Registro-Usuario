@@ -19,7 +19,7 @@ services:
       POSTGRES_DB: flask_db
       POSTGRES_USER: flask_user
       POSTGRES_PASSWORD: supersecretpassword
-      DATABASE_URL: postgresql://flask_user:your_strong_password@db:5432/flask_db
+      DATABASE_URL: postgresql://flask_user:supersecretpassword@db:5432/flask_db
 
   # Servicio para PostgreSQL
   db:
