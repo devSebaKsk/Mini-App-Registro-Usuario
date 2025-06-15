@@ -21,4 +21,4 @@ python_version = "3.10" # Ajusta esto a la versión de Python de tu Codespace (e
 
 # Sección de scripts para pipenv run start
 [scripts]
-start = "sh -c 'FLASK_APP=backend.app flask run --host=0.0.0.0 --port=5000'"
+start = "sh -c 'FLASK_APP=backend.app flask run --debug --host=0.0.0.0 --port=5000'"

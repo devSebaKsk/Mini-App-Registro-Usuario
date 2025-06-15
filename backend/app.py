@@ -72,10 +72,28 @@ def create_user():
 
 
 
+# backend/app.py
+
+# ... (tus imports y configuraciones anteriores) ...
+
+# ... (tus rutas /create_db_manual, /register, /login) ...
+
 @app.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
-    return jsonify(users), 200
+    users_list = []
+    for user in users:
+        users_list.append({
+            "id": user.id,
+            "full_name": user.full_name,
+            "email": user.email,
+
+        })
+
+
+    return jsonify(users_list), 200
+
+
 
 if __name__ == '__main__':
     # Si quieres crear las tablas automáticamente al inicio del servidor de desarrollo
