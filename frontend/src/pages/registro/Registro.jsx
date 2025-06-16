@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { Link } from 'react-router-dom'
 import md5 from 'md5';
 import './registro.scss'
@@ -13,19 +13,23 @@ export const Registro = () => {
 		gsap.fromTo(".signup", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.5 });
 	}, [])
 
-	const [fullname, setFullname] = useState("")
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
-	const [passwordConfirm, setPasswordConfirm] = useState("")
+	const [nombre, setNombre] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
-	const FLASK_BACKEND_URL = import.meta.env.VITE_FLASK_BACKEND_URL; // ¡CAMBIO CLAVE!
+	const FLASK_BACKEND_URL = import.meta.env.VITE_FLASK_BACKEND_URL;
 
-	const handleSignup = async () => {
-		if (passwordConfirm.length < 6) {
+	const handleSignup = async (e) => {
+		toast.info('Registrando usuario!', {
+			position: "top-right",
+			autoClose: 5000,
+		});
+		e.preventDefault();
+		if (password.length < 6) {
 			toast.error("La contraseña debe tener al menos 6 caracteres");
 			return;
 		}
-		if (!fullname || !email || !password) {
+		if (!nombre || !email || !password) {
 			toast.error('Todos los campos son obligatorios');
 			return;
 		}
@@ -36,7 +40,7 @@ export const Registro = () => {
 			return;
 		}
 		const data = {
-			"fullname": fullname,
+			"fullname": nombre,
 			"email": email,
 			"password": password
 		};
@@ -49,7 +53,11 @@ export const Registro = () => {
 				body: JSON.stringify(data)
 
 			});
+			setNombre('');
+			setEmail('');
+			setPassword('');
 			toast.success('Usuario creado correctamente');
+
 			if (!response.ok) {
 				throw new Error("Error login endpoint");
 			}
@@ -70,28 +78,21 @@ export const Registro = () => {
 			<div className='wrapper'>
 				<Link to="/listado" className='back'><button className='listado-button'>Usuarios Registrados</button></Link>
 				<h1>Signup</h1>
-				<form>
+				<form onSubmit={handleSignup}>
 					<div className="input-box">
 						<label htmlFor="InputFullName">Nombre Completo</label>
-						<input type="text" onChange={(e) => {
-							setFullname(e.target.value)
-						}} className="form-control" id="InputFullName" placeholder="Nombre Completo" />
+						<input type="text" value={nombre} onChange={e => setNombre(e.target.value)} className="form-control" id="InputFullName" placeholder={nombre} />
 					</div>
 					<div className="input-box">
 						<label htmlFor="InputEmail">Correo Electrónico</label>
-						<input type="email" onChange={(e) => {
-							setEmail(e.target.value)
-						}} className="form-control" id="InputEmail" placeholder="Correo" />
+						<input type="email" value={email} onChange={e => setEmail(e.target.value)} className="form-control" id="InputEmail" placeholder={email} />
 					</div>
 					<div className="input-box">
 						<label htmlFor="InputPassword">Contraseña</label>
-						<input type="password" onChange={(e) => {
-							setPassword(md5(e.target.value))
-							setPasswordConfirm(e.target.value)
-						}} className="form-control" id="InputPassword" placeholder="Contraseña" />
+						<input type="password" value={password} onChange={e => setPassword(md5(e.target.value))} className="form-control" id="InputPassword" placeholder={password} />
 					</div>
 					<div className='buttons'>
-						<button type="button" onClick={handleSignup} className="signup">Registrar</button>
+						<button type="submit" className="signup">Registrar</button>
 					</div>
 				</form>
 			</div>
