@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import './listado.scss';
 
 export const Listado = () => {
 
@@ -23,12 +24,13 @@ export const Listado = () => {
 
   return (
     <div className="listado-wrapper">
+    <div className="listado-container">
         <h1>Listado de Usuarios</h1>
         <table className="listado-table">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Nombre</th>
+                <th>Nombre Completo</th>
                 <th>Email</th>
             </tr>
             </thead>
@@ -36,12 +38,13 @@ export const Listado = () => {
             {listado.map((user) => (
                 <tr key={user.id}>
                 <td>{user.id}</td>
-                <td>{user.name}</td>
+                <td>{user.fullname}</td>
                 <td>{user.email}</td>
                 </tr>
             ))}
             </tbody>
         </table>
+        </div>
     </div>
   )
 }
