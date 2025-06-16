@@ -17,8 +17,8 @@ flask-bcrypt = "*"
 
 
 [requires]
-python_version = "3.10" # Ajusta esto a la versión de Python de tu Codespace (ej. "3.9", "3.11")
+python_version = "3.10"
 
-# Sección de scripts para pipenv run start
+# Pipenv run start
 [scripts]
 start = "sh -c 'FLASK_APP=backend.app flask run --debug --host=0.0.0.0 --port=5000'"

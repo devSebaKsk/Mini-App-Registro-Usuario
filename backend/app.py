@@ -70,14 +70,6 @@ def create_user():
     return jsonify({"message": "Usuario registrado"}), 201
 
 
-
-
-# backend/app.py
-
-# ... (tus imports y configuraciones anteriores) ...
-
-# ... (tus rutas /create_db_manual, /register, /login) ...
-
 @app.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
@@ -96,10 +88,7 @@ def get_users():
 
 
 if __name__ == '__main__':
-    # Si quieres crear las tablas automáticamente al inicio del servidor de desarrollo
-    # Es más seguro usar la ruta /create_db o un script de migración en producción
-    # with app.app_context():
-    #     db.create_all()
+
     app.run(debug=True, host='0.0.0.0', port=5000)
 
 
