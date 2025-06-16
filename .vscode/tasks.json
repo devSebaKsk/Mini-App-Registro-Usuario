@@ -1,0 +1,54 @@
+// .vscode/tasks.json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Flask Backend",
+      "type": "shell",
+      "command": "pipenv run start",
+      "options": {
+        "cwd": "${workspaceFolder}" 
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new", 
+        "group": "dev-servers" 
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run React Frontend",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend" 
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "dev-servers"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start All Dev Servers (Flask & React)",
+      "dependsOn": ["Run Flask Backend", "Run React Frontend"],
+      "group": {
+        "kind": "build",
+        "isDefault": true 
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated", 
+        "group": "dev-servers",
+        "showReuseMessage": false
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

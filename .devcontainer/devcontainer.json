@@ -15,9 +15,7 @@
 		}
 	},
 
-  "onCreateCommand": "(pipenv install || echo \"pipenv install failed\");",
-
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "pipenv install && cd frontend && npm install",
 
 
   "customizations": {
@@ -32,7 +30,23 @@
   // Flask (5000) y PostgreSQL (5432)
   "forwardPorts": [5000, 5432, 5173],
 
+  "portsAttributes": {
+    "5000": { // Puerto de Flask
+      "label": "Flask Backend",
+      "onAutoForward": "openBrowser",
+      "visibility": "public" 
+    },
+    "5173": { // Puerto de React
+      "label": "React Frontend",
+      "onAutoForward": "openBrowser",
+      "visibility": "public"
+    },
+    "5432": { // Puerto de PostgreSQL
+      "label": "PostgreSQL Database",
+      "visibility": "private"
+    }}
+
   
-  "postAttachCommand": "export FLASK_APP=backend.app && flask run --host=0.0.0.0 --port=5000"
+  //"postAttachCommand": "pipenv run start"
 
 }
