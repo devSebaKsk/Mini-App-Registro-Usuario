@@ -15,7 +15,7 @@ export const Listado = () => {
 
     const [listado, setListado] = useState([])
 
-    const FLASK_BACKEND_URL = import.meta.env.VITE_FLASK_BACKEND_URL; // ¡CAMBIO CLAVE!
+    const FLASK_BACKEND_URL = import.meta.env.VITE_FLASK_BACKEND_URL; 
 
 
     const getUsers = async () => {
