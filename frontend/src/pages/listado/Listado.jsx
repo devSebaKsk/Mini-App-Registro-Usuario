@@ -2,8 +2,16 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import './listado.scss';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
 
 export const Listado = () => {
+
+  useGSAP(() => {
+    gsap.fromTo(".listado-wrapper", { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 1 });
+    gsap.fromTo(".listado-container", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.2 });
+  }, [])
 
     const [listado, setListado] = useState([])
 
