@@ -18,6 +18,8 @@ export const Registro = () => {
 	const [password, setPassword] = useState("")
 	const [passwordConfirm, setPasswordConfirm] = useState("")
 
+	const FLASK_BACKEND_URL = import.meta.env.VITE_FLASK_BACKEND_URL; // ¡CAMBIO CLAVE!
+
 	const handleSignup = async () => {
 		if (passwordConfirm.length < 6) {
 			toast.error("La contraseña debe tener al menos 6 caracteres");
@@ -39,7 +41,7 @@ export const Registro = () => {
 			"password": password
 		};
 		try {
-			const response = await fetch(`https://fuzzy-goldfish-q7qvv4w7rpp724w4w-5000.app.github.dev/createUser`, {
+			const response = await fetch(`${FLASK_BACKEND_URL}/createUser`, {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"

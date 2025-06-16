@@ -15,10 +15,13 @@ export const Listado = () => {
 
     const [listado, setListado] = useState([])
 
+    const FLASK_BACKEND_URL = import.meta.env.VITE_FLASK_BACKEND_URL; // ¡CAMBIO CLAVE!
+
+
     const getUsers = async () => {
     try {
 
-      const res = await fetch(`https://fuzzy-goldfish-q7qvv4w7rpp724w4w-5000.app.github.dev/users`);
+      const res = await fetch(`${FLASK_BACKEND_URL}/users`);
 
       const data = await res.json();
       setListado(data);
