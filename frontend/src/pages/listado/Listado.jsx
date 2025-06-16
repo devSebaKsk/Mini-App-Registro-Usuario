@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './listado.scss';
+import { Link } from 'react-router-dom';
 
 export const Listado = () => {
 
@@ -25,6 +26,7 @@ export const Listado = () => {
   return (
     <div className="listado-wrapper">
     <div className="listado-container">
+      <Link to="/"><button className="btn btn-primary">Volver</button></Link>
         <h1>Listado de Usuarios</h1>
         <table className="listado-table">
             <thead>
