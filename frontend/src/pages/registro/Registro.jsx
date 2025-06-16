@@ -42,7 +42,7 @@ export const Registro = () => {
 		const data = {
 			"fullname": nombre,
 			"email": email,
-			"password": password
+			"password": md5(password)
 		};
 		try {
 			const response = await fetch(`${FLASK_BACKEND_URL}/createUser`, {
@@ -89,7 +89,7 @@ export const Registro = () => {
 					</div>
 					<div className="input-box">
 						<label htmlFor="InputPassword">Contraseña</label>
-						<input type="password" value={password} onChange={e => setPassword(md5(e.target.value))} className="form-control" id="InputPassword" placeholder={password} />
+						<input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-control" id="InputPassword" placeholder={password} />
 					</div>
 					<div className='buttons'>
 						<button type="submit" className="signup">Registrar</button>
